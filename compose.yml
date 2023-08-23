@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  front-app:
+    build:
+      context: ./myquiz_front
+    ports:
+      - "9000:3000"
+    volumes:
+      - ./myquiz_front/front-app:/app
+      - myquiz_node_modules:/app/node_modules
+    command: sh -c "npm run dev"
+  app-plate:
+    container_name: myquiz-go 
+    build:
+      context: ./myquiz_back
+      dockerfile: ./build/Dockerfile
+    depends_on:
+      - db
+    volumes:
+      - ./myquiz_back/app-plate:/go/src/github.com/app-plate
+    ports:
+      - "5000:5000"
+    tty: true
+    env_file:
+      - ./myquiz_back/build/.go_env
+    environment:
+      - TZ=Asia/Tokyo
+    networks:
+      - myquiz_backend_network
+    command: sh -c "go run ./cmd/main.go"
+  db :
+    image: postgres:14
+    ports:
+      - 5432:5432
+    env_file:
+      - ./postgre/.env_postgre
+    volumes:
+      - ./postgre/dbstore:/var/lib/postgresql/data
+      - ./postgre/sql:/docker-entrypoint-initdb.d
+    networks:
+      - myquiz_backend_network
+
+networks:
+  myquiz_backend_network:
+
+volumes:
+  myquiz_node_modules:

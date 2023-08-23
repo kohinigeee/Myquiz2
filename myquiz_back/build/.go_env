@@ -1,0 +1,3 @@
+POSTGRES_DB=myquiz_database
+POSTGRES_MYQUIZ_USER=myquiz_user
+POSTGRES_MYQUIZ_PASSWORD=password
