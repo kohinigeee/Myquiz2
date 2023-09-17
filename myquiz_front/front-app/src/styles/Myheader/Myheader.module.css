@@ -1,0 +1,28 @@
+.nav {
+  border-bottom: 5px solid #b94047;
+}
+
+.nav_menu {
+  color: #b94047;
+}
+.nav_menu:hover {
+  background-color: #b94047;
+  color: white;
+}
+
+.nav_menu_active {
+  color: #b94047;
+  border-bottom: #b94047 solid 2px;
+}
+.nav_menu_active:hover {
+  background-color: #b94047;
+  color: white;
+}
+
+.brand_text {
+  font-weight: bold;
+  font-size: 2rem;
+}
+.brand_text:hover {
+  color: #b94047;
+}/*# sourceMappingURL=Myheader.module.css.map */

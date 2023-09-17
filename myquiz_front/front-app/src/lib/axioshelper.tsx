@@ -12,3 +12,13 @@ export const makeAxiosFormDataRequest = ( formData : FormData, req : AxiosReques
 
     return makeCORSRequest(req)
 }
+
+export const makeFormDataFromObj = ( data : any ) : FormData => {
+    const formData = new FormData();
+
+    Object.entries(data).forEach(([key, value]) => {
+        formData.append(key, value);
+    })
+
+    return formData
+}

@@ -33,7 +33,8 @@ func GetSessionUser(sess *session.Session) *dbuser.User {
 	user_i := (*sess).Get("user")
 
 	if user_i == nil {
-		return nil
+		guestUser := dbuser.GetGuestUser()
+		return &guestUser
 	}
 
 	user := user_i.(dbuser.User)

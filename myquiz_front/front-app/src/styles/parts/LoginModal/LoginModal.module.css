@@ -1,0 +1,12 @@
+.modal_contents {
+  border: solid 2px #ba4046;
+  border-radius: 6px;
+}
+
+.modal_header {
+  border-bottom: 1px solid rgba(186, 64, 70, 0.5);
+}
+
+.modal_body {
+  border-bottom: 1px solid rgba(186, 64, 70, 0.5);
+}/*# sourceMappingURL=LoginModal.module.css.map */
