@@ -5,6 +5,7 @@ import { DataContext } from "@/lib/UserContext";
 import { isLogin } from "@/lib/userdata";
 import MyButton from "./mybutton";
 import LoginModal from "./loginmodal";
+import AccountCreateModal from "./composite/accountcreatemodal";
 
 interface MyHeaderProps {
     className?: string;
@@ -53,6 +54,8 @@ const MyHeader: React.FC<MyHeaderProps> = ({ className }) => {
                     <>
                     <MyButton text="ログイン" id="loginbtn"/>
                     <LoginModal target="loginbtn"/>
+                    {/* <MyButton text="Sign up" id="signupbtn"/> */}
+                    {/* <AccountCreateModal target="signupbtn"/> */}
                     </>
                 }
 

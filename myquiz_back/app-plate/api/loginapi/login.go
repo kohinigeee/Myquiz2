@@ -74,6 +74,7 @@ func loginCreateAccountHandle(c *gin.Context) {
 	if err != nil {
 		result := api.MakeBadAPIResult("PasswordのHash化に失敗しました", nil)
 		c.JSON(http.StatusInternalServerError, result)
+		return
 	}
 
 	userData := dbuser.User{
@@ -88,6 +89,7 @@ func loginCreateAccountHandle(c *gin.Context) {
 	if err != nil {
 		result := api.MakeBadAPIResult("Userの作成に失敗しました", nil)
 		c.JSON(http.StatusInternalServerError, result)
+		return
 	}
 
 	result := api.MakeSuccessAPIResult("Userの作成に成功しました", userData)
@@ -106,11 +108,13 @@ func loginLoginHandle(c *gin.Context) {
 	if err != nil {
 		result := api.MakeBadAPIResult("ログインに失敗しました", nil)
 		c.JSON(http.StatusBadRequest, result)
+		return
 	}
 
 	if !lib.IsCorrectPasswordByHash(params.Password, userData.Hashpass) {
 		result := api.MakeBadAPIResult("ログインに失敗しました", nil)
 		c.JSON(http.StatusBadRequest, result)
+		return
 	}
 
 	gbsession := lib.GetGlobalSessions()

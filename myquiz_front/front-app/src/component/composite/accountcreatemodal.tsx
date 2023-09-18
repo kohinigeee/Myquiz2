@@ -1,6 +1,6 @@
 import { Modal, Form, Button } from "react-bootstrap"
 import React, { useState, useRef, useEffect, useContext } from "react"
-import MyButton from "./mybutton";
+import MyButton from "../mybutton";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -9,13 +9,13 @@ import axios from "axios";
 import { makeCORSRequest, makeFormDataFromObj } from "@/lib/axioshelper";
 import { DataContext } from "@/lib/UserContext";
 import { convertJsonToUser } from "@/lib/userdata";
-import MyFormAlertMessage from "./parts/myfomralertmessage";
+import MyFormAlertMessage from "../parts/myfomralertmessage";
 
-import styles from "../styles/parts/LoginModal/LoginModal.module.css"
-import AccountCreateModal from "./composite/accountcreatemodal";
+import styles from "../../styles/composite/accountcreatemodal/AccountCreateModal.module.css";
 
-interface LoginModalProps {
-    target: string,
+interface AccountCreateModalProps {
+    show : boolean,
+    onHide : () => void,
 }
 
 const formSchema = yup.object().shape({
@@ -23,86 +23,49 @@ const formSchema = yup.object().shape({
     password: yup.string().required("パスワードは必須です"),
 })
 
-const LoginModal: React.FC<LoginModalProps> = (props: LoginModalProps) => {
+const AccountCreateModal : React.FC<AccountCreateModalProps> = (props: AccountCreateModalProps ) => {
 
-    const [show, setShow] = useState<boolean>(false);
     const [isShowLoginFailedMessage, setShowLoginFailedMessage] = useState<boolean>(false);
-    const [createModalShow, setCreateModalShow] = useState<boolean>(false);
 
     const [formData, setFormData] = useState({
         username: "",
         password: "",
     })
-    const targetBtn = useRef<HTMLElement>();
     const { setUser } = useContext(DataContext);
-
-    const handleClose = () => setShow(false);
-    const handleOpen = () => setShow(true);
-
-    const handleCreteaModalOpen = () => {
-        setCreateModalShow(true);
-        handleClose();
-    }
-    
-    const handleCreateModalClose = () => {
-        setCreateModalShow(false);
-    }
 
     const { control, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(formSchema),
         defaultValues: formData,
     });
 
-    const setTarget = () => {
-        if (typeof window !== "undefined") {
-            const ele = document.getElementById(props.target);
-            if (ele) {
-                targetBtn.current = ele;
-            }
-        }
-    }
-
-    useEffect(() => {
-        setTarget();
-        if (targetBtn.current instanceof HTMLButtonElement) {
-            targetBtn.current.addEventListener("click", handleOpen);
-        }
-    }, [targetBtn])
 
     const onSubmit = (data: any) => {
         const url = BACK_INDEX + `/api/login`
         const fdata = makeFormDataFromObj(data);
 
-        axios.put(url, fdata, makeCORSRequest({}))
+        axios.post(url, fdata, makeCORSRequest({}))
             .then((response) => {
                 console.log(response.data);
-                const data = response.data;
-                const user = convertJsonToUser(data.data);
-                if (user) {
-                    setUser(user);
-                }
-                window.location.reload();
+                alert("アカウントが作成できました\nログインしてください")
+                props.onHide();
             })
             .catch((error) => {
                 setShowLoginFailedMessage(true);
                 console.error(error)
             })
-
     }
-
-    setTarget();
 
     return (
         <>
-            <Modal className={`${styles.login_modal}`} show={show} onHide={handleClose}>
+            <Modal className={`${styles.login_modal}`} show={props.show} onHide={props.onHide}>
                 <div className={`${styles.modal_contents}`}>
                     <Modal.Header className={`${styles.modal_header}`}>
-                        <Modal.Title className="mytext-secondary">Login</Modal.Title>
+                        <Modal.Title className="mytext-secondary">Sign Up</Modal.Title>
                         {isShowLoginFailedMessage &&
                             <div>
-                                <small className="mytext-secondary">ログインに失敗しました</small>
+                                <small className="mytext-secondary">アカウントの作成に失敗しました</small>
                                 <br></br>
-                                <small className="mytext-secondary">UsernameまたはPasswordが違います</small>
+                                <small className="mytext-secondary">このUsernameは使用されています</small>
                             </div>
                         }
                     </Modal.Header>
@@ -138,18 +101,16 @@ const LoginModal: React.FC<LoginModalProps> = (props: LoginModalProps) => {
 
                     <Modal.Footer>
                         <div className="d-flex justify-content-left flex-fill align-items-center">
-                            <p onClick={handleCreteaModalOpen} id="__signup-link" className={`${styles.link_create}`}>➤アカウント新規作成はこちら</p>
                         </div>
-                        <MyButton onClick={handleClose} text="Close" />
-                        <MyButton type="submit" text="Login" form="__loginform" />
+                        <MyButton onClick={props.onHide} text="Close" />
+                        <MyButton type="submit" text="Sign up" form="__loginform" />
                     </Modal.Footer>
                 </div>
             </Modal>
-            
-            <AccountCreateModal show={createModalShow} onHide={handleCreateModalClose}/>
+
         </>
 
     )
 }
 
-export default LoginModal;
+export default AccountCreateModal;
