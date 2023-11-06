@@ -54,7 +54,7 @@ export const convertJsonToUser = (data : any ) : User | undefined => {
     return user;
 }
 
-const getLoginUser = async () => {
+export const getLoginUser = async ()  => {
     const url = BACK_INDEX+"/api/login"
     let myUser : User | undefined = undefined
     
@@ -85,4 +85,13 @@ export const isLogin = ( user : User | undefined ) : boolean => {
     }
 
     return true;
+}
+
+export const createGuestUser = () : User => {
+    return {
+        id : 0,
+        nameid : "Noname",
+        namestr : "Noname",
+        accountType : accountType.Guest
+    }
 }

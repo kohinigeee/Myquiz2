@@ -47,7 +47,7 @@ func (quiz *SimpleQuiz) Create() (err error) {
 	return
 }
 
-func (quiz *SimpleQuiz) Delte() (err error) {
+func (quiz *SimpleQuiz) Delete() (err error) {
 	err = nil
 
 	deleteQuery := "DELETE FROM simplequiz WHERE author_id = :author_id"
@@ -78,11 +78,11 @@ func GetById(quizid int) (quiz SimpleQuiz, err error) {
 	return
 }
 
-func getRowsQuery(colname string, value int) (result []SimpleQuiz, err error) {
+func getRowsQuery(colname string, value int, limit int, offset int) (result []SimpleQuiz, err error) {
 	err = nil
 
 	selectQuery := fmt.Sprintf(
-		"SELECT sq.id, sq.author_id, sq.problem, sq.answer, sq.commentary, sq.created, sq.type_id, sq.genre_id, qt.type_name, qg.genre_name FROM simplequiz sq JOIN quiztype qt ON sq.type_id = qt.id JOIN quizgenre qg ON sq.genre_id = qg.id WHERE %s = $1", colname)
+		"SELECT sq.id, sq.author_id, sq.problem, sq.answer, sq.commentary, sq.created, sq.type_id, sq.genre_id, qt.type_name, qg.genre_name FROM simplequiz sq JOIN quiztype qt ON sq.type_id = qt.id JOIN quizgenre qg ON sq.genre_id = qg.id WHERE %s = $1 LIMIT %d OFFSET %d", colname, limit, offset)
 
 	err = db.Select(&result, selectQuery, value)
 
@@ -94,9 +94,9 @@ func getRowsQuery(colname string, value int) (result []SimpleQuiz, err error) {
 	return
 }
 
-func GetRowsByAuthorId(authorId int) (result []SimpleQuiz, err error) {
+func GetRowsByAuthorId(authorId int, limit int, offset int) (result []SimpleQuiz, err error) {
 	err = nil
-	result, err = getRowsQuery("sq.author_id", authorId)
+	result, err = getRowsQuery("sq.author_id", authorId, limit, offset)
 
 	if err != nil {
 		return
@@ -105,9 +105,36 @@ func GetRowsByAuthorId(authorId int) (result []SimpleQuiz, err error) {
 	return
 }
 
-func GetRowsByGenreId(genreId int) (result []SimpleQuiz, err error) {
+func GetRowsByGenreId(genreId int, limit int, offset int) (result []SimpleQuiz, err error) {
 	err = nil
-	result, err = getRowsQuery("sq.genre_id", genreId)
+	result, err = getRowsQuery("sq.genre_id", genreId, limit, offset)
+
+	if err != nil {
+		return
+	}
+	err = nil
+	return
+}
+
+func GetCountQuery(colname string, value int) (result int, err error) {
+	err = nil
+
+	selectQuery := fmt.Sprintf(
+		"SELECT COUNT(*) FROM simplequiz sq JOIN quiztype qt ON sq.type_id = qt.id JOIN quizgenre qg ON sq.genre_id = qg.id WHERE %s = $1", colname)
+
+	err = db.QueryRow(selectQuery, value).Scan(&result)
+
+	if err != nil {
+		return 0, err
+	}
+
+	err = nil
+	return
+}
+
+func GetCountByAuthorId(authorId int) (result int, err error) {
+	err = nil
+	result, err = GetCountQuery("sq.author_id", authorId)
 
 	if err != nil {
 		return

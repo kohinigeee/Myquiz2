@@ -42,3 +42,7 @@ body {
         outline: none;
     }
 }
+
+.form-select::after {
+    border-top-color: white;
+}

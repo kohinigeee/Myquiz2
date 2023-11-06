@@ -1,15 +1,15 @@
-import { Modal, Form, Button } from "react-bootstrap"
-import React, { useState, useRef, useEffect, useContext } from "react"
-import MyButton from "../mybutton";
+import { Modal, Form,} from "react-bootstrap"
+import React, { useState,useContext } from "react"
+import MyButton from "../parts/mybutton";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { BACK_INDEX } from "@/lib/constants";
 import axios from "axios";
 import { makeCORSRequest, makeFormDataFromObj } from "@/lib/axioshelper";
-import { DataContext } from "@/lib/UserContext";
-import { convertJsonToUser } from "@/lib/userdata";
 import MyFormAlertMessage from "../parts/myfomralertmessage";
+
+import { useSelector } from "@/store/store";
 
 import styles from "../../styles/composite/accountcreatemodal/AccountCreateModal.module.css";
 
@@ -25,13 +25,15 @@ const formSchema = yup.object().shape({
 
 const AccountCreateModal : React.FC<AccountCreateModalProps> = (props: AccountCreateModalProps ) => {
 
+
+    const user = useSelector((state) => state.loginUser.user); 
+
     const [isShowLoginFailedMessage, setShowLoginFailedMessage] = useState<boolean>(false);
 
     const [formData, setFormData] = useState({
         username: "",
         password: "",
     })
-    const { setUser } = useContext(DataContext);
 
     const { control, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(formSchema),

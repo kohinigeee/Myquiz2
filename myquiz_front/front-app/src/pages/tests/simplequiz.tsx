@@ -6,11 +6,13 @@ import { set, useForm } from "react-hook-form"
 import FormData from 'form-data'
 import { makeAxiosFormDataRequest, makeCORSRequest } from "@/lib/axioshelper"
 import { useRef, useContext, useEffect } from "react"
-import { DataContext } from "@/lib/UserContext"
 import Link from "next/link"
 import Layout from "@/component/layout"
+import { useSelector } from "@/store/store"
 
 export default function Home() {
+
+    const user = useSelector(state => state.loginUser.user);
 
     const { register, handleSubmit, formState: { errors }, watch } = useForm()
     const formRef = useRef<HTMLFormElement | null>(null)
@@ -37,8 +39,6 @@ export default function Home() {
     const usernameid = watch("usernameid")
     const id = watch("id")
 
-    const { user } = useContext(DataContext)
-    // console.log("user:", user)
 
     return (
         <>

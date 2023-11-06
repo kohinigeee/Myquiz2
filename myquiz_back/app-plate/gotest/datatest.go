@@ -56,7 +56,7 @@ func TestSimpleQuiz() {
 	fmt.Println("[Test] Quizの取得に成功しました")
 	fmt.Println(quiz2)
 
-	quizz, err := dbsimplequiz.GetRowsByAuthorId(user.Id)
+	quizz, err := dbsimplequiz.GetRowsByAuthorId(user.Id, 10, 0)
 
 	if err != nil {
 		log.Fatal(err)
@@ -65,7 +65,7 @@ func TestSimpleQuiz() {
 	fmt.Println("[Test] AuthorIdによるQuizの取得に成功しました")
 	fmt.Println("[Quizz]:", quizz)
 
-	quizz, err = dbsimplequiz.GetRowsByGenreId(data.QUIZ_GENRE_SCIENCE)
+	quizz, err = dbsimplequiz.GetRowsByGenreId(data.QUIZ_GENRE_SCIENCE, 10, 0)
 
 	if err != nil {
 		log.Fatal(err)
@@ -74,7 +74,7 @@ func TestSimpleQuiz() {
 	fmt.Println("[Test] GenreIdによるQuizの取得に成功しました")
 	fmt.Println("[Quizz]:", quizz)
 
-	err = quiz.Delte()
+	err = quiz.Delete()
 	if err != nil {
 		log.Fatal(err)
 	}

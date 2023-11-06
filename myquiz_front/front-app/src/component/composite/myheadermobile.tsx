@@ -1,17 +1,20 @@
 import { Navbar, Nav, Button, Container, NavDropdown } from "react-bootstrap";
 import { useContext, useEffect, useRef, useState } from "react";
-import { DataContext } from "@/lib/UserContext";
 import { isLogin } from "@/lib/userdata";
 
-import styles from "../styles/Myhadermobile/Myheadermobile.module.css"
-import MyButton from "./mybutton";
+import { useSelector } from "@/store/store";
+
+import styles from "../../styles/composite/Myhadermobile/Myheadermobile.module.css"
+import MyButton from "../parts/mybutton";
 
 interface MyHeaderMobileProps {
     className?: string;
 }
 
 const MyHeaderMobile : React.FC<MyHeaderMobileProps> = ({className}) => {
-    const { user } = useContext(DataContext)
+
+    const user = useSelector( (state) => state.loginUser.user);
+
     const [isLoginFlag, setIsLogin] = useState<boolean>()
 
     useEffect(() => {

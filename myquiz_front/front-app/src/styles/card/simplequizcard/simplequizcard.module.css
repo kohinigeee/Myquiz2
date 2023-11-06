@@ -1,0 +1,133 @@
+.background_science {
+  background-color: #006e54;
+}
+
+.font_color_science {
+  color: #006e54;
+}
+
+.background_literature {
+  background-color: #b94047;
+}
+
+.font_color_literature {
+  color: #b94047;
+}
+
+.background_socialstudy {
+  background-color: #bf794e;
+}
+
+.font_color_socialstudy {
+  color: #bf794e;
+}
+
+.background_music {
+  background-color: #aa4c8f;
+}
+
+.font_color_music {
+  color: #aa4c8f;
+}
+
+.background_sports {
+  background-color: #824880;
+}
+
+.font_color_sports {
+  color: #824880;
+}
+
+.background_entertainment {
+  background-color: #2ca9e1;
+}
+
+.font_color_entertainment {
+  color: #2ca9e1;
+}
+
+.background_subculture {
+  background-color: #dccb18;
+}
+
+.font_color_subculture {
+  color: #dccb18;
+}
+
+.background_lifestyle {
+  background-color: #b8d200;
+}
+
+.font_color_lifestyle {
+  color: #b8d200;
+}
+
+.background_nongenre {
+  background-color: #9ea1a3;
+}
+
+.font_color_nongenre {
+  color: #9ea1a3;
+}
+
+.quiz_card_body {
+  border: solid 2px black;
+  border-radius: 8px;
+  transition: transform 0.25s ease-out;
+}
+.quiz_card_body:hover {
+  transform: scale(1.05);
+}
+
+.card_no_text {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.2rem;
+}
+
+.values_card_question_body {
+  background: white;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 10px;
+  border: white;
+  border-radius: 3px;
+}
+
+.values_question_title {
+  font-size: 140%;
+  font-weight: bold;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+  padding-bottom: 5px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.values_question_textarea {
+  width: 100%;
+  border: none;
+  resize: none;
+}
+
+.values_card_answer_body {
+  width: 60%;
+  background: white;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 30px;
+  border-radius: 3px;
+}
+
+.values_answer_title {
+  font-size: 140%;
+  font-weight: bold;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding-top: 0px;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+  padding-bottom: 5px;
+}
+
+.values_answer_textarea {
+  width: 100%;
+  max-lines: 3;
+  border: none;
+  resize: none;
+}/*# sourceMappingURL=simplequizcard.module.css.map */

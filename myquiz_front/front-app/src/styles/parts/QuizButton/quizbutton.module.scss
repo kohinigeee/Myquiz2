@@ -1,0 +1,21 @@
+.quiz_btn {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 240px;
+    padding: 10px 25px;
+    color: #FFF;
+    transition: 0.2s ease-in-out;
+    font-weight: 600;
+    background: #b94047;
+    border-radius: 30px;
+    border: solid 1px black;
+    border-bottom: solid 5px #682e31;
+
+    &:hover {
+        border-bottom: solid 2px #682e31;
+        transform: translateY(3px);
+    }
+}

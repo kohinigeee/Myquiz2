@@ -1,0 +1,139 @@
+$maincolor : #b94047;
+$title_font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+.result_next {
+    visibility: hidden;
+    
+    &:hover {
+        cursor: pointer;
+        filter: brightness(0.8);
+    }
+}
+
+.result_next_ico {
+    width: 30px;
+    height: 30px;
+}
+.result_next_text {
+    text-align: center;
+    color: #b94047;
+    margin-bottom: 0px;
+    font-size: 1.1em;
+
+    margin-left: 5px;
+}
+
+
+.question_card_body {
+    background-color: #b94047;
+    padding: 10px;
+    border: solid 2px black;
+    border-radius: 10px;
+}
+
+.question_internal_card_body {
+    background-color: white;
+    border-radius: 5px;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.question_title_text {
+    color: $maincolor;
+    font-weight: bold;
+    font-size: 1.5rem;
+    font-family: $title_font;
+}
+
+.title_hr {
+    margin-top: 3px;
+    margin-bottom: 10px;
+}
+
+.question_textarea {
+    width: 100%;
+    color: white;
+
+    font-size: 1.2rem;;
+}
+
+
+.answer_internal_card_body {
+    background-color: white;
+    border-radius: 5px;
+    padding-bottom: 15px;
+}
+
+.answer_title_text {
+    color: $maincolor;
+    font-weight: bold;
+    font-size: 1.2rem;
+    font-family: $title_font;
+}
+
+.answer_text {
+    color: $maincolor;
+    font-weight: bold;
+    font-size: 1.6rem;
+    font-family: $title_font;
+}
+
+.commentary_title {
+    color: $maincolor;
+    font-weight: bold;
+    font-size: 1.1rem;
+    font-family: $title_font;
+
+    margin-top: 30px;
+}
+
+.commentary_text_active {
+    width: 100%;
+    resize: none;
+    border: none;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.commentary_text {
+    width: 100%;
+    resize: none;
+    border: none;
+    color: rgba(0, 0, 0, 0.5);
+
+    &:focus {
+        outline: none;
+    }
+}
+
+
+.my_answer_card_body{
+    background-color: #b94047;
+    padding: 10px;
+    border: solid 2px black;
+    border-radius: 10px;
+}
+
+.my_answer_internal_card_body {
+    background-color: white;
+    border-radius: 5px;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.my_answer_title {
+    color: #b94047;
+    font-size: 1.4rem;
+    font-family: $title_font;
+    font-weight: bold;
+}
+
+.my_answer_input {
+    width: 100%;
+    border: none;
+    font-size: 1.2rem;
+}

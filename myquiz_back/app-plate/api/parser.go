@@ -53,6 +53,54 @@ func setValueInt(pname string, required bool, val *reflect.Value, c *gin.Context
 	return nil
 }
 
+func setValueStringSlice(pname string, required bool, val *reflect.Value, c *gin.Context) error {
+	pnameStrArray := QueryAndPostFormArray(pname, c)
+
+	if required && len(pnameStrArray) == 0 {
+		msg := fmt.Sprintf("`%s` is required", pname)
+		return errors.New(msg)
+	}
+
+	n := len(pnameStrArray)
+	sliceType := reflect.SliceOf(reflect.TypeOf(""))
+	value := reflect.MakeSlice(sliceType, n, n)
+
+	for i, v := range pnameStrArray {
+		value.Index(i).SetString(v)
+	}
+
+	val.Set(value)
+	return nil
+}
+
+func setValueIntSlice(pname string, required bool, val *reflect.Value, c *gin.Context) error {
+	pnameStrArray := QueryAndPostFormArray(pname, c)
+	pnameValues := []int{}
+
+	for _, str := range pnameStrArray {
+		num, err := strconv.Atoi(str)
+		if err != nil {
+			return err
+		}
+		pnameValues = append(pnameValues, num)
+	}
+
+	if required && len(pnameValues) == 0 {
+		msg := fmt.Sprintf("`%s` is required", pname)
+		return errors.New(msg)
+	}
+
+	sliceType := reflect.SliceOf(reflect.TypeOf(0))
+	value := reflect.MakeSlice(sliceType, len(pnameValues), len(pnameValues))
+
+	for i, v := range pnameValues {
+		value.Index(i).SetInt(int64(v))
+	}
+
+	val.Set(value)
+	return nil
+}
+
 func setValue(filed *reflect.StructField, val *reflect.Value, c *gin.Context) error {
 	//フィールドに定義されているアノテーションの解析
 	typeName := filed.Type
@@ -62,6 +110,10 @@ func setValue(filed *reflect.StructField, val *reflect.Value, c *gin.Context) er
 	//pnameアノテーションがないフィールドは無視
 	if pname == "" {
 		return nil
+	}
+
+	if !val.CanSet() {
+		return errors.New("It can't set Value")
 	}
 
 	//フィールドの型によってセット関数を分岐
@@ -78,6 +130,17 @@ func setValue(filed *reflect.StructField, val *reflect.Value, c *gin.Context) er
 			return err
 		}
 		return nil
+	case reflect.Slice:
+
+		elementType := typeName.Elem()
+
+		switch elementType.Kind() {
+		case reflect.Int:
+			return setValueIntSlice(pname, require, val, c)
+		case reflect.String:
+			return setValueStringSlice(pname, require, val, c)
+		}
+
 	}
 
 	//セット関数が用意されている方以外はエラーを投げる
@@ -105,6 +168,7 @@ func Myparser(c *gin.Context, inst interface{}) error {
 		err := setValue(&filed, &filedval, c)
 
 		if err != nil {
+			fmt.Println("[Log] MyParser : ", err)
 			pname := filed.Tag.Get("pname")
 			msg := fmt.Sprintf("パラメータ`%s`で不正な値が入力されています", pname)
 

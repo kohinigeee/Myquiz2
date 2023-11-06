@@ -1,0 +1,63 @@
+.content_card {
+  margin-bottom: 10px;
+  transition: transform 0.25s ease-out;
+}
+
+.content_card_body {
+  background-color: #b94047;
+  border: solid 2px black;
+  border-radius: 5px;
+}
+
+.form_card_body {
+  background-color: white;
+  border-radius: 5px;
+  margin-top: 10px;
+  padding: 5px;
+  padding-left: 10px;
+}
+
+.form_card_title {
+  border-bottom: rgba(0, 0, 0, 0.2) solid 1px;
+  color: #b94047;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  padding-bottom: 5px;
+}
+
+.form_card_question_input {
+  width: 100%;
+  resize: none;
+  border: none;
+  font-size: 0.9rem;
+}
+
+.form_card_answer_body {
+  background-color: white;
+  border-radius: 5px;
+  margin-top: 10px;
+  width: 70%;
+  padding: 5px;
+  padding-left: 10px;
+}
+
+.form_card_commentary_title {
+  border-bottom: rgba(0, 0, 0, 0.2) solid 1px;
+  color: #b94047;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  padding-bottom: 5px;
+  font-size: 1.1rem;
+}
+
+.form_card_commentary_input {
+  width: 100%;
+  resize: none;
+  border: none;
+  font-size: 0.8rem;
+}
+
+.form_hr {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}/*# sourceMappingURL=simplequizform.module.css.map */

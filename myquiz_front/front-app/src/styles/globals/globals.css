@@ -38,4 +38,8 @@ body {
 }
 .navbar-toggler :focus :active {
   outline: none;
+}
+
+.form-select::after {
+  border-top-color: white;
 }/*# sourceMappingURL=globals.css.map */

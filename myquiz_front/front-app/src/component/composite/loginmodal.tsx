@@ -1,18 +1,21 @@
 import { Modal, Form, Button } from "react-bootstrap"
 import React, { useState, useRef, useEffect, useContext } from "react"
-import MyButton from "./mybutton";
+import MyButton from "../parts/mybutton";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { BACK_INDEX } from "@/lib/constants";
 import axios from "axios";
 import { makeCORSRequest, makeFormDataFromObj } from "@/lib/axioshelper";
-import { DataContext } from "@/lib/UserContext";
 import { convertJsonToUser } from "@/lib/userdata";
-import MyFormAlertMessage from "./parts/myfomralertmessage";
 
-import styles from "../styles/parts/LoginModal/LoginModal.module.css"
-import AccountCreateModal from "./composite/accountcreatemodal";
+import { setUser } from "@/store/loginUserSlice";
+import { useDispatch } from "react-redux"
+
+import styles from "../../styles/parts/LoginModal/LoginModal.module.css"
+
+import MyFormAlertMessage from "../parts/myfomralertmessage";
+import AccountCreateModal from "./accountcreatemodal";
 
 interface LoginModalProps {
     target: string,
@@ -25,6 +28,8 @@ const formSchema = yup.object().shape({
 
 const LoginModal: React.FC<LoginModalProps> = (props: LoginModalProps) => {
 
+    const dispatch = useDispatch();
+
     const [show, setShow] = useState<boolean>(false);
     const [isShowLoginFailedMessage, setShowLoginFailedMessage] = useState<boolean>(false);
     const [createModalShow, setCreateModalShow] = useState<boolean>(false);
@@ -34,7 +39,6 @@ const LoginModal: React.FC<LoginModalProps> = (props: LoginModalProps) => {
         password: "",
     })
     const targetBtn = useRef<HTMLElement>();
-    const { setUser } = useContext(DataContext);
 
     const handleClose = () => setShow(false);
     const handleOpen = () => setShow(true);
@@ -79,7 +83,7 @@ const LoginModal: React.FC<LoginModalProps> = (props: LoginModalProps) => {
                 const data = response.data;
                 const user = convertJsonToUser(data.data);
                 if (user) {
-                    setUser(user);
+                    dispatch(setUser(user));
                 }
                 window.location.reload();
             })

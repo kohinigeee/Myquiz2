@@ -3,6 +3,7 @@ package main
 import (
 	"app-plate/api/loginapi"
 	"app-plate/api/logoutapi"
+	"app-plate/api/quizsearchapi"
 	"app-plate/api/simplequizapi"
 	"app-plate/data"
 	_ "app-plate/data"
@@ -19,6 +20,7 @@ func setHandler(engin *gin.Engine) {
 	loginapi.LoginHandler("/api/login", engin)
 	logoutapi.LogOutHandler("/api/logout", engin)
 	simplequizapi.SimpleQuizHandle("/api/simplequiz", engin)
+	quizsearchapi.QuizSearchHandle("/api/quizsearch", engin)
 }
 
 func makeCorsConfig() cors.Config {

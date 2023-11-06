@@ -102,12 +102,11 @@ func SimpleQuizGet(c *gin.Context) {
 
 func SimpleQuizCreateHandler(c *gin.Context) {
 	type Params struct {
-		Id         int    `pname:"id"`
+		Id         int    `pname:"userId"`
 		Problem    string `pname:"problem"`
 		Answer     string `pname:"answer"`
 		Commentary string `pname:"commentary" prequire:"no"`
-		GenreName  string `pname:"genre"`
-		GenreId    int
+		GenreId    int    `pname:"genreId"`
 	}
 
 	params := Params{}
@@ -118,9 +117,9 @@ func SimpleQuizCreateHandler(c *gin.Context) {
 	}
 
 	var isExist bool
-	params.GenreId, isExist = lib.ConGenreNametToId(params.GenreName)
+	_, isExist = lib.ConGenreIdtoName(params.GenreId)
 	if !isExist {
-		result := api.MakeBadAPIResult("不正な`genre`です", nil)
+		result := api.MakeBadAPIResult("不正な`genre Id`です", nil)
 		c.JSON(http.StatusBadRequest, result)
 		return
 	}
@@ -202,7 +201,7 @@ func simplequizDeleteHandle(c *gin.Context) {
 		return
 	}
 
-	err = quiz.Delte()
+	err = quiz.Delete()
 
 	if err != nil {
 		result := api.MakeBadAPIResult("クイズの削除に失敗しました", nil)

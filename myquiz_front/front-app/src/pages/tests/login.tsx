@@ -6,12 +6,18 @@ import { useForm } from "react-hook-form"
 import FormData from 'form-data'
 import { makeAxiosFormDataRequest, makeCORSRequest } from "@/lib/axioshelper"
 import { useRef, useContext, useEffect} from "react"
-import { DataContext } from "@/lib/UserContext"
 import Link from "next/link"
 import { convertJsonToUser } from "@/lib/userdata"
 import Layout from "@/component/layout"
 
+import { useSelector } from "@/store/store"
+import { useDispatch } from "react-redux"
+import { setUser } from "@/store/loginUserSlice"
+
 export default function Home() {
+
+    const user = useSelector( (state) => state.loginUser.user);
+    const dispatch = useDispatch();
 
     const { register, handleSubmit, formState: { errors }, watch } = useForm()
     const formRef = useRef<HTMLFormElement | null>(null)
@@ -46,7 +52,7 @@ export default function Home() {
             .then( res => {
                 const userJson = res.data.data;
                 const tmpuser = convertJsonToUser(userJson)
-                setUser(convertJsonToUser(userJson))
+                dispatch(setUser(convertJsonToUser(userJson)))
                 console.log("ログインに成功しました : ", tmpuser)
             })
             .catch( error => {
@@ -94,8 +100,6 @@ export default function Home() {
     const username = watch("username")
     const password = watch("password")
 
-    const { user, setUser } = useContext(DataContext)
-
     return (
         <>
         <Layout title="TestLogin">
@@ -123,6 +127,8 @@ export default function Home() {
                         </div>
                     </Form>
                     <Link href="/tests/simplequiz"> move to simplequiz page
+                    </Link>
+                    <Link href="/tests/quizserch"> move to quizsearch page
                     </Link>
 
                 </Row>

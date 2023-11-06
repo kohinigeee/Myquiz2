@@ -1,0 +1,21 @@
+.incorrect_text {
+    color: #1e4588;
+    font-size : 200%;   
+    font-weight: 500;
+
+    margin-left: 5px;
+    margin-bottom: 0px;
+}
+
+.correct_text {
+    color: #b94047;
+    font-size : 200%;
+    font-weight: 500;
+
+    margin-left: 5px;
+    margin-bottom: 0px;
+}
+
+.notanswer_container {
+    visibility: hidden;
+}
