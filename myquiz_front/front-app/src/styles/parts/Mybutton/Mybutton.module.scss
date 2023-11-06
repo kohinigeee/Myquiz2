@@ -1,0 +1,17 @@
+.my_btn {
+    background-color: #b94047;
+    color : white;
+    transition: transform 0.25s ease-out;
+    border-color: black;
+
+    &:hover {
+        background-color: #b94047;
+        transform: scale(1.1);
+        border-color: black;
+    }
+
+    &:active {
+        background-color: #b94047 !important;
+        filter: brightness(0.8);
+    }
+}

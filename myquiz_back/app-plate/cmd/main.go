@@ -2,8 +2,12 @@ package main
 
 import (
 	"app-plate/api/loginapi"
+	"app-plate/api/logoutapi"
+	"app-plate/api/quizsearchapi"
+	"app-plate/api/simplequizapi"
 	"app-plate/data"
 	_ "app-plate/data"
+	"app-plate/gotest"
 	_ "app-plate/lib"
 
 	"net/http"
@@ -14,6 +18,9 @@ import (
 
 func setHandler(engin *gin.Engine) {
 	loginapi.LoginHandler("/api/login", engin)
+	logoutapi.LogOutHandler("/api/logout", engin)
+	simplequizapi.SimpleQuizHandle("/api/simplequiz", engin)
+	quizsearchapi.QuizSearchHandle("/api/quizsearch", engin)
 }
 
 func makeCorsConfig() cors.Config {
@@ -29,6 +36,8 @@ func main() {
 
 	db := data.GetMydb()
 	defer db.Close()
+
+	gotest.TestSimpleQuiz()
 
 	engin := gin.Default()
 	config := makeCorsConfig()

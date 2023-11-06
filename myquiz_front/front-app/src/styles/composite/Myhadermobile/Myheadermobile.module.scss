@@ -1,0 +1,41 @@
+.nav {
+    border-bottom: 5px solid #b94047;
+}
+
+.brand_text {
+    font-weight: bold;
+    font-size: 2.0rem;
+
+    &:hover {
+        color:#b94047;
+    }
+}
+
+.my_toggler {
+    background-color: #b94047;
+    color: white;
+
+    &:hover {
+        color: #b94047;
+    }
+}
+
+.toggler_menu {
+    font-size: 1.15em;
+    color: #b94047;
+    font-weight: bold;
+    text-align: center;
+
+    &:hover {
+        color: #b94047;
+        opacity: 0.8; 
+    }
+}
+
+.flex1 {
+    flex : 6;
+}
+
+.flex2 {
+    flex: 1;
+}

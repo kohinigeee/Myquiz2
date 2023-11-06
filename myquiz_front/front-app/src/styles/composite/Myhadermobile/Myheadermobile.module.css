@@ -1,0 +1,38 @@
+.nav {
+  border-bottom: 5px solid #b94047;
+}
+
+.brand_text {
+  font-weight: bold;
+  font-size: 2rem;
+}
+.brand_text:hover {
+  color: #b94047;
+}
+
+.my_toggler {
+  background-color: #b94047;
+  color: white;
+}
+.my_toggler:hover {
+  color: #b94047;
+}
+
+.toggler_menu {
+  font-size: 1.15em;
+  color: #b94047;
+  font-weight: bold;
+  text-align: center;
+}
+.toggler_menu:hover {
+  color: #b94047;
+  opacity: 0.8;
+}
+
+.flex1 {
+  flex: 6;
+}
+
+.flex2 {
+  flex: 1;
+}/*# sourceMappingURL=Myheadermobile.module.css.map */

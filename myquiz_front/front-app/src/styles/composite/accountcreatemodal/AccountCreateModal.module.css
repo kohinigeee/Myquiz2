@@ -1,0 +1,23 @@
+.modal_contents {
+  border: solid 2px #ba4046;
+  border-radius: 6px;
+}
+
+.modal_header {
+  border-bottom: 1px solid rgba(186, 64, 70, 0.5);
+  background-color: #ba4046;
+}
+
+.modal_body {
+  border-bottom: 1px solid rgba(186, 64, 70, 0.5);
+}
+
+.link_create {
+  color: #ba4046;
+  margin-top: auto;
+  margin-bottom: auto;
+  cursor: pointer;
+}
+.link_create:hover {
+  filter: brightness(0.8);
+}/*# sourceMappingURL=AccountCreateModal.module.css.map */

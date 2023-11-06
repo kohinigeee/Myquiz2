@@ -45,7 +45,7 @@ create table simplequiz (
     id serial primary key,
     author_id serial REFERENCES users(id),
     problem TEXT NOT NULL,
-    answer varchar(255),
+    answer varchar(255) NOT NULL,
     commentary TEXT,
     created TIMESTAMP,
     type_id INT REFERENCES quiztype(id),

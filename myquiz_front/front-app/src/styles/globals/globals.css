@@ -1,0 +1,45 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#__next {
+  height: 100%;
+}
+
+.layout-container {
+  height: 100%;
+}
+
+.mybg-primary {
+  background-color: white;
+}
+
+.mybg-secondary {
+  background-color: #b94047;
+}
+
+.mytext-primary {
+  color: #b94047;
+}
+
+.mytext-secondary {
+  color: white;
+}
+
+.navbar-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.navbar-toggler {
+  background-color: #b94047;
+}
+.navbar-toggler :focus :active {
+  outline: none;
+}
+
+.form-select::after {
+  border-top-color: white;
+}/*# sourceMappingURL=globals.css.map */

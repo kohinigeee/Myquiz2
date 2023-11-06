@@ -1,0 +1,122 @@
+.infos_container {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  border-bottom: solid 3px rgba(184, 183, 183, 0.5);
+  margin-bottom: 10px;
+}
+
+.page_title {
+  color: #b94047;
+  margin-top: 30px;
+}
+
+.info_text {
+  color: #b94047;
+  font-weight: bold;
+  font-size: 120%;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-bottom: solid 1px rgba(185, 64, 71, 0.5);
+}
+
+.container {
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 90%;
+}
+
+.card_container {
+  background-color: #dcd6d9;
+  border: solid #dcd6d9 2px;
+  border-radius: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.card_internal_div {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.card_internal_div:hover {
+  cursor: pointer;
+}
+
+.pagination_item {
+  color: #b94047;
+  font-size: 1.5em;
+  list-style: none;
+  border: solid 1px rgb(207, 207, 207);
+  width: 50px;
+  height: 50px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.pagination_item_active {
+  color: white;
+  font-size: 1.5em;
+  list-style: none;
+  background-color: #b94047;
+  border: solid 1px rgb(207, 207, 207);
+  width: 50px;
+  height: 50px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.pagination_container {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination_next_label {
+  color: #b94047;
+  list-style: none;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.pagination_next {
+  color: #b94047;
+  list-style: none;
+  border: solid 1px rgb(207, 207, 207);
+  width: 50px;
+  height: 50px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.pagination_next_link {
+  text-decoration: none;
+}
+
+.pagination_previous_label {
+  color: #b94047;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.pagination_previous {
+  color: #b94047;
+  list-style: none;
+  text-decoration: none;
+  border: solid 1px rgb(207, 207, 207);
+  width: 50px;
+  height: 50px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.pagination_previous_link {
+  text-decoration: none;
+}
+
+.pagination_break {
+  color: #b94047;
+  list-style: none;
+  display: none;
+}/*# sourceMappingURL=managequizpage.module.css.map */

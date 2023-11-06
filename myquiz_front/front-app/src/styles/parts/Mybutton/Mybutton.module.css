@@ -1,0 +1,15 @@
+.my_btn {
+  background-color: #b94047;
+  color: white;
+  transition: transform 0.25s ease-out;
+  border-color: black;
+}
+.my_btn:hover {
+  background-color: #b94047;
+  transform: scale(1.1);
+  border-color: black;
+}
+.my_btn:active {
+  background-color: #b94047 !important;
+  filter: brightness(0.8);
+}/*# sourceMappingURL=Mybutton.module.css.map */
