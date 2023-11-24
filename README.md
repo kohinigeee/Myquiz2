@@ -16,3 +16,11 @@ QuizTypeやQuizGenreを選び、ゲーム開始ボタンを押すとクイズを
 ## クイズ新規作成画面
 ![Alt text](readme_context/quizcreate_screen.png)
 クイズのタイプやジャンルを選んで、クイズを新規作成することができます
+
+## クイズゲーム画面
+
+### クイズ回答画面
+![Alt text](readme_context/quizgame_screen.png)
+
+### クイズのリザルト画面
+![Alt text](readme_context/quiz_result_screen.png)
